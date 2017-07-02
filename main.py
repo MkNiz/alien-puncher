@@ -1,11 +1,15 @@
 import sys
 import pygame
 
-DEFAULT_BG = (255, 0, 0)
+from settings import Settings
+
 def run_game():
     # Initialization of game and screen
     pygame.init()
-    screen = pygame.display.set_mode((640, 480))
+    game_settings = Settings()
+    screen = pygame.display.set_mode(
+        (game_settings.screen_width, game_settings.screen_height)
+    )
     pygame.display.set_caption("Alien Puncher")
     # Primary loop
     while True:
@@ -14,7 +18,7 @@ def run_game():
             if event.type == pygame.QUIT:
                 sys.exit()
         # Set a custom background color
-        screen.fill(DEFAULT_BG)
+        screen.fill(game_settings.bg_color)
         # Set display to make the most recently drawn screen visible
         pygame.display.flip()
 

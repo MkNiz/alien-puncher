@@ -12,6 +12,8 @@ def run_game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+        # Set a custom background color
+        screen.fill((255, 0, 0))
         # Set display to make the most recently drawn screen visible
         pygame.display.flip()
 

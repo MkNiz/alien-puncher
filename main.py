@@ -1,6 +1,7 @@
 import sys
 import pygame
 
+DEFAULT_BG = (255, 0, 0)
 def run_game():
     # Initialization of game and screen
     pygame.init()
@@ -13,7 +14,7 @@ def run_game():
             if event.type == pygame.QUIT:
                 sys.exit()
         # Set a custom background color
-        screen.fill((255, 0, 0))
+        screen.fill(DEFAULT_BG)
         # Set display to make the most recently drawn screen visible
         pygame.display.flip()
 

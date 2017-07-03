@@ -15,7 +15,7 @@ def run_game():
     pygame.display.set_caption("Alien Puncher")
 
     # Create the player ship
-    ship = Ship(screen)
+    ship = Ship(game_settings, screen)
 
     # Primary loop
     while True:

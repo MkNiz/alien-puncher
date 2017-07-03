@@ -19,7 +19,7 @@ def run_game():
 
     # Primary loop
     while True:
-        gl.check_events()
+        gl.check_events(ship)
         gl.update(game_settings, screen, ship)
 
 run_game()

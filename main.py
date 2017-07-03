@@ -1,8 +1,9 @@
-import sys
 import pygame
 
 from settings import Settings
 from ship import Ship
+
+import game_logic as gl
 
 def run_game():
     # Initialization of game and screen
@@ -18,17 +19,7 @@ def run_game():
 
     # Primary loop
     while True:
-        # Events
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-        # Set a custom background color
-        screen.fill(game_settings.bg_color)
-
-        # Draw the player's ship at its current position
-        ship.blitme()
-
-        # Set display to make the most recently drawn screen visible
-        pygame.display.flip()
+        gl.check_events()
+        gl.update(game_settings, screen, ship)
 
 run_game()

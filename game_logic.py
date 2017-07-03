@@ -6,22 +6,26 @@ def check_events(ship):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
-                # Ship starts moving to the right
-                ship.moving_right = True
-            elif event.key == pygame.K_LEFT:
-                # Ship starts moving to the left
-                ship.moving_left  = True
-
+            keydown_events(event, ship)
         elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_RIGHT:
-                # Ship stops moving to the right
-                ship.moving_right = False
-            elif event.key == pygame.K_LEFT:
-                # Ship stops moving to the left
-                ship.moving_left  = False
+            keyup_events(event, ship)
+
+def keydown_events(event, ship):
+    if event.key == pygame.K_RIGHT:
+        # Ship starts moving to the right
+        ship.moving_right = True
+    elif event.key == pygame.K_LEFT:
+        # Ship starts moving to the left
+        ship.moving_left  = True
+
+def keyup_events(event, ship):
+    if event.key == pygame.K_RIGHT:
+        # Ship stops moving to the right
+        ship.moving_right = False
+    elif event.key == pygame.K_LEFT:
+        # Ship stops moving to the left
+        ship.moving_left  = False
 
 def update(game_settings, screen, ship):
     """Updates the screen with current data"""

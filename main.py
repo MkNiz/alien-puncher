@@ -26,6 +26,11 @@ def run_game():
         gl.check_events(game_settings, screen, ship, bullets)
         ship.update()
         bullets.update()
+        # Remove bullets when they hit the top of the screen
+        for bullet in bullets.copy():
+            if bullet.rect.bottom <= 0:
+                bullets.remove(bullet)
+                
         gl.update(game_settings, screen, ship, bullets)
 
 run_game()

@@ -47,3 +47,13 @@ def update(game_settings, screen, ship, bullets):
 
     # Flip the screen
     pygame.display.flip()
+
+def update_bullets(bullets):
+    """Update bullet positions and existence"""
+    # Update position of bullets
+    bullets.update()
+
+    # Remove bullets that pass the top of the screen
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)

@@ -9,10 +9,10 @@ class Settings():
         self.bg_color      = (40, 0, 0)
 
         # Ship
-        self.ship_speed_factor = 1.5
+        self.ship_speed_factor = 2.75
 
         # Bullet
-        self.bullet_speed_factor = 4.5
+        self.bullet_speed_factor = 8.5
         self.bullet_side = "left"
 
     def flip_bullet_side(self):

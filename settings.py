@@ -13,7 +13,8 @@ class Settings():
 
         # Bullet
         self.bullet_speed_factor = 8.5
-        self.bullet_side = "left"
+        self.bullet_side         = "left"
+        self.max_bullets         = 2
 
     def flip_bullet_side(self):
         """Flips the bullet side between right and left"""

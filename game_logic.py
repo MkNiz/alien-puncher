@@ -21,9 +21,10 @@ def keydown_events(event, settings, screen, ship, bullets):
         ship.moving_left  = True
     elif event.key == pygame.K_SPACE:
         # Create a new bullet and add it to the bullets group
-        new_bullet = Bullet(settings, screen, ship)
-        bullets.add(new_bullet)
-        settings.flip_bullet_side()
+        if len(bullets) < settings.max_bullets:
+            new_bullet = Bullet(settings, screen, ship)
+            bullets.add(new_bullet)
+            settings.flip_bullet_side()
 
 def keyup_events(event, settings, screen, ship, bullets):
     if event.key == pygame.K_RIGHT:

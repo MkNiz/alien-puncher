@@ -2,6 +2,7 @@ import pygame
 
 from settings import Settings
 from ship import Ship
+from pygame.sprite import Group
 
 import game_logic as gl
 
@@ -17,10 +18,14 @@ def run_game():
     # Create the player ship
     ship = Ship(game_settings, screen)
 
+    # Store bullets in a group
+    bullets = Group()
+
     # Primary loop
     while True:
-        gl.check_events(ship)
+        gl.check_events(game_settings, screen, ship, bullets)
         ship.update()
-        gl.update(game_settings, screen, ship)
+        bullets.update()
+        gl.update(game_settings, screen, ship, bullets)
 
 run_game()

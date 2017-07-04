@@ -1,25 +1,30 @@
 import sys
 import pygame
+from bullet import Bullet
 
-def check_events(ship):
+def check_events(settings, screen, ship, bullets):
     """Responds to pygame events i.e. key presses"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            keydown_events(event, ship)
+            keydown_events(event, settings, screen, ship, bullets)
         elif event.type == pygame.KEYUP:
-            keyup_events(event, ship)
+            keyup_events(event, settings, screen, ship, bullets)
 
-def keydown_events(event, ship):
+def keydown_events(event, settings, screen, ship, bullets):
     if event.key == pygame.K_RIGHT:
         # Ship starts moving to the right
         ship.moving_right = True
     elif event.key == pygame.K_LEFT:
         # Ship starts moving to the left
         ship.moving_left  = True
+    elif event.key == pygame.K_SPACE:
+        # Create a new bullet and add it to the bullets group
+        new_bullet = Bullet(settings, screen, ship)
+        bullets.add(new_bullet)
 
-def keyup_events(event, ship):
+def keyup_events(event, settings, screen, ship, bullets):
     if event.key == pygame.K_RIGHT:
         # Ship stops moving to the right
         ship.moving_right = False
@@ -27,11 +32,14 @@ def keyup_events(event, ship):
         # Ship stops moving to the left
         ship.moving_left  = False
 
-def update(game_settings, screen, ship):
+def update(game_settings, screen, ship, bullets):
     """Updates the screen with current data"""
     # Set a custom background color
     screen.fill(game_settings.bg_color)
 
+    # Redraw all bullets
+    for bullet in bullets.sprites():
+        bullet.draw_bullet()
     # Draw the player's ship at its current position
     ship.blitme()
 

@@ -9,15 +9,22 @@ class Bullet(Sprite):
         super(Bullet, self).__init__()
         self.screen = screen
 
-        # Initialize bullet rect at 0,0 before repositioning at ship
-        self.rect = pygame.Rect(0, 0, settings.bullet_width, settings.bullet_height)
-        self.rect.centerx = ship.rect.centerx
+        # Load bullet image and rect
+        self.image = pygame.image.load('assets/fist.png')
+        if settings.bullet_side == "right":
+            self.image = pygame.transform.flip(self.image, True, False)
+        self.rect = self.image.get_rect()
+
+        # Send bullet rect to the ship
+        if settings.bullet_side == "left":
+            self.rect.centerx = ship.rect.left
+        else:
+            self.rect.centerx = ship.rect.right
         self.rect.top = ship.rect.top
 
         # Store the bullet's y-position as a float
         self.y = float(self.rect.y)
 
-        self.color = settings.bullet_color
         self.speed_factor = settings.bullet_speed_factor
 
     def update(self):
@@ -29,4 +36,4 @@ class Bullet(Sprite):
 
     def draw_bullet(self):
         """Draws the bullet to the screen"""
-        pygame.draw.rect(self.screen, self.color, self.rect)
+        self.screen.blit(self.image, self.rect)

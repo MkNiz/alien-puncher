@@ -13,6 +13,11 @@ class Settings():
 
         # Bullet
         self.bullet_speed_factor = 4.5
-        self.bullet_width        = 4
-        self.bullet_height       = 18
-        self.bullet_color        = 60, 60, 60
+        self.bullet_side = "left"
+
+    def flip_bullet_side(self):
+        """Flips the bullet side between right and left"""
+        if self.bullet_side == "left":
+            self.bullet_side = "right"
+        else:
+            self.bullet_side = "left"

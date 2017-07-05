@@ -2,6 +2,7 @@ import pygame
 
 from settings import Settings
 from ship import Ship
+from alien import Alien
 from pygame.sprite import Group
 
 import game_logic as gl
@@ -21,12 +22,15 @@ def run_game():
     # Store bullets in a group
     bullets = Group()
 
+    # Create an alien
+    alien = Alien(game_settings, screen)
+
     # Primary loop
     while True:
         gl.check_events(game_settings, screen, ship, bullets)
         ship.update()
         gl.update_bullets(bullets)
 
-        gl.update(game_settings, screen, ship, bullets)
+        gl.update(game_settings, screen, ship, alien, bullets)
 
 run_game()

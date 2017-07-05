@@ -42,7 +42,7 @@ def fire_bullet(settings, screen, ship, bullets):
         bullets.add(new_bullet)
         settings.flip_bullet_side()
 
-def update(game_settings, screen, ship, bullets):
+def update(game_settings, screen, ship, alien, bullets):
     """Updates the screen with current data"""
     # Set a custom background color
     screen.fill(game_settings.bg_color)
@@ -50,8 +50,12 @@ def update(game_settings, screen, ship, bullets):
     # Redraw all bullets
     for bullet in bullets.sprites():
         bullet.draw_bullet()
+
     # Draw the player's ship at its current position
     ship.blitme()
+
+    # Draw the alien at its current position
+    alien.blitme()
 
     # Flip the screen
     pygame.display.flip()

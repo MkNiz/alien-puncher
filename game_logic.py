@@ -21,10 +21,7 @@ def keydown_events(event, settings, screen, ship, bullets):
         ship.moving_left  = True
     elif event.key == pygame.K_SPACE:
         # Create a new bullet and add it to the bullets group
-        if len(bullets) < settings.max_bullets:
-            new_bullet = Bullet(settings, screen, ship)
-            bullets.add(new_bullet)
-            settings.flip_bullet_side()
+        fire_bullet(settings, screen, ship, bullets)
 
 def keyup_events(event, settings, screen, ship, bullets):
     if event.key == pygame.K_RIGHT:
@@ -33,6 +30,13 @@ def keyup_events(event, settings, screen, ship, bullets):
     elif event.key == pygame.K_LEFT:
         # Ship stops moving to the left
         ship.moving_left  = False
+
+def fire_bullet(settings, screen, ship, bullets):
+    """Fire a bullet if there are less than the max bullets on screen"""
+    if len(bullets) < settings.max_bullets:
+        new_bullet = Bullet(settings, screen, ship)
+        bullets.add(new_bullet)
+        settings.flip_bullet_side()
 
 def update(game_settings, screen, ship, bullets):
     """Updates the screen with current data"""

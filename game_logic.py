@@ -13,6 +13,7 @@ def check_events(settings, screen, ship, bullets):
             keyup_events(event, settings, screen, ship, bullets)
 
 def keydown_events(event, settings, screen, ship, bullets):
+    """Events run when keys are pressed"""
     if event.key == pygame.K_RIGHT:
         # Ship starts moving to the right
         ship.moving_right = True
@@ -24,6 +25,7 @@ def keydown_events(event, settings, screen, ship, bullets):
         fire_bullet(settings, screen, ship, bullets)
 
 def keyup_events(event, settings, screen, ship, bullets):
+    """Events run when keys are released"""
     if event.key == pygame.K_RIGHT:
         # Ship stops moving to the right
         ship.moving_right = False

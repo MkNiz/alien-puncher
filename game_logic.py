@@ -77,6 +77,14 @@ def get_num_aliens_x(settings, alien_width):
     num_aliens_x = int(space_for_x / (2 * alien_width))
     return num_aliens_x
 
+def create_alien(settings, screen, aliens, alien_num):
+    """Creates an alien and adds it to a row"""
+    alien = Alien(settings, screen)
+    alien_width = alien.rect.width
+    alien.x = alien_width + (2 * alien_width * alien_num)
+    alien.rect.x = alien.x
+    aliens.add(alien)
+
 def create_fleet(settings, screen, aliens):
     """Create a fleet of aliens"""
     alien = Alien(settings, screen)
@@ -86,8 +94,4 @@ def create_fleet(settings, screen, aliens):
 
     # Create the first row of aliens
     for alien_num in range(num_aliens_x):
-        # Make an alien and place it in the row
-        alien = Alien(settings, screen)
-        alien.x = alien_width + (2 * alien_width * alien_num)
-        alien.rect.x = alien.x
-        aliens.add(alien)
+        create_alien(settings, screen, aliens, alien_num)

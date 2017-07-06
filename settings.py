@@ -16,6 +16,9 @@ class Settings():
         self.bullet_side         = "left"
         self.max_bullets         = 2
 
+        # Alien
+        self.alien_speed_factor = 1
+
     def flip_bullet_side(self):
         """Flips the bullet side between right and left"""
         if self.bullet_side == "left":

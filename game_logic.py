@@ -71,6 +71,10 @@ def update_bullets(bullets):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
 
+def update_aliens(aliens):
+    """Updates the positions of all aliens in the given group"""
+    aliens.update()
+
 def get_num_aliens_x(settings, alien_width):
     """Returns the number of aliens that should be in a horizontal row"""
     space_for_x = settings.screen_width - (2 * alien_width)

@@ -18,6 +18,9 @@ class Settings():
 
         # Alien
         self.alien_speed_factor = 1
+        self.fleet_drop_speed = 10
+        # Fleet direction; 1 = right, -1 = left
+        self.fleet_direction = 1
 
     def flip_bullet_side(self):
         """Flips the bullet side between right and left"""

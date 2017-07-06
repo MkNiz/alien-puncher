@@ -71,13 +71,18 @@ def update_bullets(bullets):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
 
+def get_num_aliens_x(settings, alien_width):
+    """Returns the number of aliens that should be in a horizontal row"""
+    space_for_x = settings.screen_width - (2 * alien_width)
+    num_aliens_x = int(space_for_x / (2 * alien_width))
+    return num_aliens_x
+
 def create_fleet(settings, screen, aliens):
     """Create a fleet of aliens"""
     alien = Alien(settings, screen)
     # Determine number of aliens in row based on width against screen size
     alien_width = alien.rect.width
-    space_for_x = settings.screen_width - (2 * alien_width)
-    num_aliens_x = int(space_for_x / (2 * alien_width))
+    num_aliens_x = get_num_aliens_x(settings, alien_width)
 
     # Create the first row of aliens
     for alien_num in range(num_aliens_x):

@@ -61,7 +61,7 @@ def update(game_settings, screen, ship, aliens, bullets):
     # Flip the screen
     pygame.display.flip()
 
-def update_bullets(bullets):
+def update_bullets(aliens, bullets):
     """Update bullet positions and existence"""
     # Update position of bullets
     bullets.update()
@@ -70,6 +70,9 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+    # Check if bullets have hit aliens
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
 def update_aliens(settings, aliens):
     """Updates the positions of all aliens in the given group"""

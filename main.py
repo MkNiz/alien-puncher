@@ -36,7 +36,7 @@ def run_game():
         gl.check_events(game_settings, screen, ship, bullets)
         ship.update()
         gl.update_bullets(game_settings, screen, ship, aliens, bullets)
-        gl.update_aliens(game_settings, stats, ship, aliens, bullets)
+        gl.update_aliens(game_settings, stats, screen, ship, aliens, bullets)
 
         gl.update(game_settings, screen, ship, aliens, bullets)
 

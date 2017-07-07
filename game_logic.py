@@ -83,7 +83,7 @@ def bullet_collision(settings, screen, ship, aliens, bullets):
         bullets.empty()
         create_fleet(settings, screen, ship, aliens)
 
-def update_aliens(settings, ship, aliens):
+def update_aliens(settings, stats, ship, aliens, bullets):
     """Updates the positions of all aliens in the given group"""
     check_fleet_edges(settings, aliens)
     aliens.update()

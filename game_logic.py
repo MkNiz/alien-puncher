@@ -93,6 +93,9 @@ def update_aliens(settings, stats, screen, ship, aliens, bullets):
     if pygame.sprite.spritecollideany(ship, aliens):
         ship_hit(settings, stats, screen, ship, aliens, bullets)
 
+    # Check if alien hits the bottom of the screen
+    alien_hits_bottom(settings, stats, screen, ship, aliens, bullets)
+
 def ship_hit(settings, stats, screen, ship, aliens, bullets):
     """Called when ship is hit by an alien"""
     # Decrease ship count
@@ -155,3 +158,12 @@ def change_fleet_direction(settings, aliens):
     for alien in aliens.sprites():
         alien.rect.y += settings.fleet_drop_speed
     settings.fleet_direction *= -1
+
+def alien_hits_bottom(settings, stats, screen, ship, aliens, bullets):
+    """Check whether aliens have hit the bottom of the screen"""
+    screen_rect = screen.get_rect()
+    for alien in aliens.sprites():
+        if alien.rect.bottom >= screen_rect.bottom:
+            # Same behavior as when ship is hit
+            ship_hit(settings, stats, screen, ship, aliens, bullets)
+            break

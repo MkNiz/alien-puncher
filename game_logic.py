@@ -98,19 +98,22 @@ def update_aliens(settings, stats, screen, ship, aliens, bullets):
 
 def ship_hit(settings, stats, screen, ship, aliens, bullets):
     """Called when ship is hit by an alien"""
-    # Decrease ship count
-    stats.ships_left -= 1
+    if stats.ships_left > 0:
+        # Decrease ship count
+        stats.ships_left -= 1
 
-    # Erase aliens, bullets
-    aliens.empty()
-    bullets.empty()
+        # Erase aliens, bullets
+        aliens.empty()
+        bullets.empty()
 
-    # Create a new fleet, center the ship
-    create_fleet(settings, screen, ship, aliens)
-    ship.center_ship()
+        # Create a new fleet, center the ship
+        create_fleet(settings, screen, ship, aliens)
+        ship.center_ship()
 
-    # Pause briefly
-    sleep(0.5)
+        # Pause briefly
+        sleep(0.5)
+    else:
+        stats.game_active = False
 
 def get_num_aliens_x(settings, alien_width):
     """Returns the number of aliens that should be in a horizontal row"""

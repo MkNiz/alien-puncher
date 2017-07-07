@@ -34,9 +34,10 @@ def run_game():
     # Primary loop
     while True:
         gl.check_events(game_settings, screen, ship, bullets)
-        ship.update()
-        gl.update_bullets(game_settings, screen, ship, aliens, bullets)
-        gl.update_aliens(game_settings, stats, screen, ship, aliens, bullets)
+        if stats.game_active:
+            ship.update()
+            gl.update_bullets(game_settings, screen, ship, aliens, bullets)
+            gl.update_aliens(game_settings, stats, screen, ship, aliens, bullets)
 
         gl.update(game_settings, screen, ship, aliens, bullets)
 

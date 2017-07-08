@@ -3,6 +3,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from game_stats import GameStats
+from button import Button
 from pygame.sprite import Group
 
 import game_logic as gl
@@ -15,6 +16,9 @@ def run_game():
         (game_settings.screen_width, game_settings.screen_height)
     )
     pygame.display.set_caption("Alien Puncher")
+
+    # Create a play button
+    play_button = Button(game_settings, screen, "Play Game")
 
     # Create a game statistics instance
     stats = GameStats(game_settings)
@@ -39,6 +43,6 @@ def run_game():
             gl.update_bullets(game_settings, screen, ship, aliens, bullets)
             gl.update_aliens(game_settings, stats, screen, ship, aliens, bullets)
 
-        gl.update(game_settings, screen, ship, aliens, bullets)
+        gl.update(game_settings, screen, stats, ship, aliens, bullets, play_button)
 
 run_game()

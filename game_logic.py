@@ -21,6 +21,9 @@ def check_play_button(settings, screen, stats, play_button, ship, aliens, bullet
     """Start a new game if the player clicks the button"""
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
+        # Hide the mouse cursor
+        pygame.mouse.set_visible(False)
+
         # Reset the game statistics and set active state
         stats.reset_stats()
         stats.game_active = True
@@ -137,6 +140,7 @@ def ship_hit(settings, stats, screen, ship, aliens, bullets):
         sleep(0.5)
     else:
         stats.game_active = False
+        pygame.mouse.set_visible(True)
 
 def get_num_aliens_x(settings, alien_width):
     """Returns the number of aliens that should be in a horizontal row"""

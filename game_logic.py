@@ -4,7 +4,7 @@ from bullet import Bullet
 from alien import Alien
 from time import sleep
 
-def check_events(settings, screen, ship, bullets):
+def check_events(settings, stats, screen, ship, bullets, play_button):
     """Responds to pygame events i.e. key presses"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -13,6 +13,14 @@ def check_events(settings, screen, ship, bullets):
             keydown_events(event, settings, screen, ship, bullets)
         elif event.type == pygame.KEYUP:
             keyup_events(event, settings, screen, ship, bullets)
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            check_play_button(stats, play_button, mouse_x, mouse_y)
+
+def check_play_button(stats, play_button, mouse_x, mouse_y):
+    """Start a new game if the player clicks the button"""
+    if play_button.rect.collidepoint(mouse_x, mouse_y):
+        stats.game_active = True
 
 def keydown_events(event, settings, screen, ship, bullets):
     """Events run when keys are pressed"""

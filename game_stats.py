@@ -6,8 +6,8 @@ class GameStats():
         self.settings = settings
         self.reset_stats()
 
-        # Game starts in active state
-        self.game_active = True
+        # Game starts in an inactive state
+        self.game_active = False
 
     def reset_stats(self):
         """Sets statistics to default values"""

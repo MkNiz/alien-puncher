@@ -19,6 +19,8 @@ class Settings():
 
         # The speed at which the game becomes faster
         self.speed_mod = 1.2
+        # The modifier for point values increasing each wave
+        self.score_mod = 1.5
 
         self.init_dynamic_settings()
 
@@ -34,8 +36,9 @@ class Settings():
         self.alien_points = 50
 
     def speed_up_fleets(self):
-        """Increase the speed of alien fleets"""
+        """Increase the speed of alien fleets, and their score value"""
         self.alien_speed_factor *= self.speed_mod
+        self.alien_points = int(self.alien_points * self.score_mod)
 
     def flip_bullet_side(self):
         """Flips the bullet side between right and left"""

@@ -23,7 +23,7 @@ def check_play_button(settings, screen, stats, play_button, ship, aliens, bullet
     if button_clicked and not stats.game_active:
         # Reset the game settings
         settings.init_dynamic_settings()
-        
+
         # Hide the mouse cursor
         pygame.mouse.set_visible(False)
 
@@ -69,7 +69,7 @@ def fire_bullet(settings, screen, ship, bullets):
         bullets.add(new_bullet)
         settings.flip_bullet_side()
 
-def update(game_settings, screen, stats, ship, aliens, bullets, play_button):
+def update(game_settings, screen, stats, sb, ship, aliens, bullets, play_button):
     """Updates the screen with current data"""
     # Set a custom background color
     screen.fill(game_settings.bg_color)
@@ -83,6 +83,9 @@ def update(game_settings, screen, stats, ship, aliens, bullets, play_button):
 
     # Draw aliens at their current position
     aliens.draw(screen)
+
+    # Draw the score
+    sb.display_score()
 
     # Draw the play button if the game is active
     if not stats.game_active:

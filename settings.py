@@ -27,7 +27,7 @@ class Settings():
         self.ship_speed_factor = 2.75
         self.bullet_speed_factor = 8.5
         self.bullet_side = "left"
-        self.alien_speed_factor = 2
+        self.alien_speed_factor = 1
         # Fleet direction; 1 = right, -1 = left
         self.fleet_direction = 1
 

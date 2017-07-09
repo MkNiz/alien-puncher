@@ -4,7 +4,7 @@ from bullet import Bullet
 from alien import Alien
 from time import sleep
 
-def check_events(settings, stats, screen, ship, aliens, bullets, play_button):
+def check_events(settings, stats, sb, screen, ship, aliens, bullets, play_button):
     """Responds to pygame events i.e. key presses"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -15,9 +15,9 @@ def check_events(settings, stats, screen, ship, aliens, bullets, play_button):
             keyup_events(event, settings, screen, ship, bullets)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y)
+            check_play_button(settings, screen, stats, sb, play_button, ship, aliens, bullets, mouse_x, mouse_y)
 
-def check_play_button(settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y):
+def check_play_button(settings, screen, stats, sb, play_button, ship, aliens, bullets, mouse_x, mouse_y):
     """Start a new game if the player clicks the button"""
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
@@ -30,6 +30,11 @@ def check_play_button(settings, screen, stats, play_button, ship, aliens, bullet
         # Reset the game statistics and set active state
         stats.reset_stats()
         stats.game_active = True
+
+        # Reset scoreboard images
+        sb.prep_score()
+        sb.prep_high_score()
+        sb.prep_level()
 
         # Empty aliens and bullets
         aliens.empty()
@@ -117,9 +122,14 @@ def bullet_collision(settings, screen, stats, sb, ship, aliens, bullets):
         check_high_score(stats, sb)
     # Bring in a new fleet at higher speed if the current one is destroyed
     if len(aliens) == 0:
-        # Destroy lingering bullets, create new fleet
+        # If fleet is destroyed, initiate a new level
         bullets.empty()
         settings.speed_up_fleets()
+
+        # Increase level
+        stats.level += 1
+        sb.prep_level()
+
         create_fleet(settings, screen, ship, aliens)
 
 def update_aliens(settings, stats, screen, ship, aliens, bullets):

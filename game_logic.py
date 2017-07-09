@@ -208,3 +208,9 @@ def alien_hits_bottom(settings, stats, screen, ship, aliens, bullets):
             # Same behavior as when ship is hit
             ship_hit(settings, stats, screen, ship, aliens, bullets)
             break
+
+def check_high_score(stats, sb):
+    """Check if there's a new high score"""
+    if stats.score > stats.high_score:
+        stats.high_score = stats.score
+        sb.prep_high_score

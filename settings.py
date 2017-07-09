@@ -12,7 +12,7 @@ class Settings():
         self.ship_limit = 3
 
         # Bullet
-        self.max_bullets         = 2
+        self.max_bullets = 2
 
         # Alien
         self.fleet_drop_speed = 16
@@ -22,7 +22,7 @@ class Settings():
 
         self.init_dynamic_settings()
 
-    def init_dynamic_settings():
+    def init_dynamic_settings(self):
         """Initializes/resets settings that change over the course of the game"""
         self.ship_speed_factor = 2.75
         self.bullet_speed_factor = 8.5
@@ -31,6 +31,9 @@ class Settings():
         # Fleet direction; 1 = right, -1 = left
         self.fleet_direction = 1
 
+    def speed_up_fleets(self):
+        """Increase the speed of alien fleets"""
+        self.alien_speed_factor *= self.speed_mod
 
     def flip_bullet_side(self):
         """Flips the bullet side between right and left"""
